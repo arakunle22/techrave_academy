@@ -25,15 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
 
-            $_SESSION['flash_message'] = "Login successful!";
+            $_SESSION['flash_message'] = "Login successful! Redirecting to your dashboard...";
             $_SESSION['flash_type'] = "success";
 
-            if ($user['role'] == 'admin') {
-                header("Location: admin_dashboard.php");
-            } else {
-                header("Location: user_dashboard.php");
-            }
-            exit();
+            // JavaScript for redirecting after a delay
+            echo "<script>
+                    setTimeout(function() {
+                        window.location.href = '" . ($user['role'] == 'admin' ? 'admin_dashboard.php' : 'user_dashboard.php') . "';
+                    }, 3000); // 3 seconds
+                  </script>";
         } else {
             $_SESSION['flash_message'] = "Incorrect password. Please try again.";
             $_SESSION['flash_type'] = "danger";
@@ -60,17 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_request'])) {
         $mail = new PHPMailer(true);
 
         try {
-            // Server settings
+            // Server settings for Mailtrap
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
+            $mail->Host = 'sandbox.smtp.mailtrap.io';  // Mailtrap SMTP server
             $mail->SMTPAuth = true;
-            $mail->Username = 'info.peacedev@gmail.com';  // SMTP username
-            $mail->Password = '@Peacecode22';     // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;  // TCP port to connect to
+            $mail->Username = '882bdda7cca6ad';  // Mailtrap SMTP username
+            $mail->Password = 'bf79df64cf2651';  // Mailtrap SMTP password
+            $mail->Port = 2525;  // Mailtrap SMTP port
 
             // Recipients
-            $mail->setFrom('info.peacedev@gmail.com', 'Techrave ICT Academy');
+            $mail->setFrom('noreply@techrave.com', 'Techrave ICT Academy');
             $mail->addAddress($email);  // Add a recipient
 
             // Content
@@ -220,5 +219,21 @@ $conn->close();
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Flash message timeout
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#flashMessage').alert('close');
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
