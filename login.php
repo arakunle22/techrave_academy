@@ -126,17 +126,131 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Techrave ICT Academy</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
     <style>
-        .tab-content > .tab-pane {
-            display: none;
+        .main-content {
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 5em auto;
+            display: flex;
+            overflow: hidden;
         }
-        .tab-content > .active {
-            display: block;
+
+        .company__info {
+            background-color: #BD577F;
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .company__info h2 {
+            font-size: 2.5em;
+        }
+
+        .company_title {
+            font-size: 1.5em;
+            margin-top: 15px;
+        }
+
+        .login_form {
+            background-color: #fff;
+            padding: 40px;
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form__input {
+            width: 100%;
+            border: 0px solid transparent;
+            border-radius: 0;
+            border-bottom: 1px solid #aaa;
+            padding: 1em .5em .5em;
+            padding-left: 2em;
+            outline: none;
+            margin: 1em auto;
+            transition: all .5s ease;
+        }
+
+        .form__input:focus {
+            border-bottom-color: #BD567F;
+            box-shadow: 0 0 5px rgba(189, 87, 127, .4);
+            border-radius: 4px;
+        }
+
+        .btn-form {
+            transition: all .5s ease;
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            color: #fff;
+            font-weight: 600;
+            background-color: #BC557D;
+            border: none;
+            margin-top: 1.5em;
+        }
+
+        .btn-form:hover,
+        .btn-form:focus {
+            background-color: #BD577F;
+            color: #fff;
+        }
+
+        .nav-tabs .nav-link {
+            color: #BD577F;
+            font-weight: 600;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: #BD577F;
+            border-color: #BD577F;
+        }
+
+        .alert {
+            color: #BD577F;
+            background-color: #F8E3E8;
+            border-color: #F1C4CF;
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .company__info {
+                border-radius: 15px 15px 0 0;
+                padding: 20px;
+            }
+
+            .login_form {
+                border-radius: 0 0 15px 15px;
+                padding: 20px;
+            }
+
+            .company__logo {
+                font-size: 2.5rem !important;
+            }
+
+            .company_title {
+                font-size: 1.25rem;
+            }
         }
     </style>
     <script>
@@ -148,92 +262,121 @@ $conn->close();
             }
             document.getElementById(tabName).classList.add("active");
         }
+
+        // Hide flash message after 3 seconds
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                var alert = document.querySelector('.alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            }, 3000); // 3 seconds
+        });
     </script>
 </head>
+
 <body>
+    <nav class="navbar bg-light">
+        <div class="container">
+            <a href="index.html" class="navbar-brand" style="color: #BD577F;">Techrave ICT Academy</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <h2 class="mt-5">Login</h2>
-
-        <!-- Display Flash Message -->
-        <?php if (isset($_SESSION['flash_message'])): ?>
-            <div class="alert alert-<?= $_SESSION['flash_type']; ?>">
-                <?= $_SESSION['flash_message']; ?>
-                <?php unset($_SESSION['flash_message']); ?>
-                <?php unset($_SESSION['flash_type']); ?>
-            </div>
-        <?php endif; ?>
-
-        <!-- Tabs for Login and Password Reset -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#" onclick="showTab('loginTab')">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" onclick="showTab('resetTab')">Reset Password</a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <!-- Login Form -->
-            <div id="loginTab" class="tab-pane active">
-                <form action="login.php" method="POST">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="login">Login</button>
-                </form>
+        <div class="row main-content">
+        <div class="col-md-4 text-center company__info">
+                <span class="company__logo">
+                    <i class="fas fa-graduation-cap fa-2x"></i>
+                </span>
+                <h4 class="company_title">Techrave ICT Academy</h4>
             </div>
 
-            <!-- Password Reset Form -->
-            <div id="resetTab" class="tab-pane">
-                <!-- Password Reset Request -->
-                <form action="login.php" method="POST">
-                    <h4>Request Password Reset</h4>
-                    <div class="form-group">
-                        <label for="reset_email">Email address</label>
-                        <input type="email" class="form-control" id="reset_email" name="reset_email" required>
-                    </div>
-                    <button type="submit" class="btn btn-warning" name="reset_request">Send Reset Code</button>
-                </form>
+            <div class="col-md-8 login_form">
+                <div class="d-flex justify-content-end">
+                    <a href="index.html" class="text-decoration-none text-muted">
+                        <i class="fas fa-home fa-2x"></i>
+                    </a>
+                </div>
 
-                <!-- Password Reset Verification -->
-                <?php if (isset($_SESSION['reset_code'])): ?>
-                <form action="login.php" method="POST" class="mt-3">
-                    <h4>Reset Password</h4>
-                    <div class="form-group">
-                        <label for="reset_code">Access Code</label>
-                        <input type="text" class="form-control" id="reset_code" name="reset_code" required>
+                <!-- Display Flash Message -->
+                <?php if (isset($_SESSION['flash_message'])): ?>
+                    <div class="alert alert-<?= $_SESSION['flash_type']; ?>">
+                        <?= $_SESSION['flash_message']; ?>
+                        <?php unset($_SESSION['flash_message']); ?>
+                        <?php unset($_SESSION['flash_type']); ?>
                     </div>
-                    <div class="form-group">
-                        <label for="new_password">New Password</label>
-                        <input type="password" class="form-control" id="new_password" name="new_password" required>
-                    </div>
-                    <button type="submit" class="btn btn-success" name="reset_password">Reset Password</button>
-                </form>
                 <?php endif; ?>
+
+                <!-- Tabs for Login and Password Reset -->
+                <ul class="nav nav-tabs mt-3 mb-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showTab('loginTab')">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTab('resetTab')" style="cursor: pointer;">Reset Password</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <!-- Login Form -->
+                    <div id="loginTab" class="tab-pane active">
+                        <form action="login.php" method="POST">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" class="form-control form__input" id="email"
+                                    name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" placeholder="Password" class="form-control form__input"
+                                    id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-form" name="login">Login</button>
+
+                            <div class="row my-3">
+                                <p>Don't have an account? <a href="register.php" style="color: #BD577F;">Register Here</a></p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Password Reset Form -->
+                    <div id="resetTab" class="tab-pane">
+                        <!-- Password Reset Request -->
+                        <form action="login.php" method="POST">
+                            <h5 class="mt-2">Request Password Reset</h5>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" class="form-control form__input"
+                                    id="reset_email" name="reset_email" required>
+                            </div>
+                            <button type="submit" class="btn btn-form mb-5" style="background-color: #BD577F;" name="reset_request">Send
+                                Reset Code</button>
+                        </form>
+
+                        <!-- Password Reset Verification -->
+                        <?php if (isset($_SESSION['reset_code'])): ?>
+                            <form action="login.php" method="POST" class="mt-3">
+                                <h4>Reset Password</h4>
+                                <div class="form-group">
+                                    <label for="reset_code">Access Code</label>
+                                    <input type="text" class="form-control" id="reset_code" name="reset_code" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password">New Password</label>
+                                    <input type="password" class="form-control" id="new_password" name="new_password"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-form" name="reset_password" style="background-color: #BC557D;">Reset
+                                    Password</button>
+                            </form>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Flash message timeout
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('#flashMessage').alert('close');
-            }, 3000);
-        });
-    </script>
 </body>
-</html>
 
-<?php
-$conn->close();
-?>
+</html>

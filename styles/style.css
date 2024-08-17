@@ -1,9 +1,47 @@
 body {
     background-color: #f8f9fa;
-    font-family: Arial, sans-serif;
+    font-family: Montserrat, sans-serif;
 }
 
 
+
+.title {
+    color: #53513F;
+}
+
+.subtitle {
+    color: #191813;
+}
+
+.main {
+    color: #C31755;
+}
+
+.text {
+    color: #53513F;
+}
+
+/* .container {
+    max-width: 600px;
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+.hero-section {
+    background: url('../images/top.png') no-repeat center center/cover;
+    color: white;
+    /* padding: 100px 0; */
+    margin-top: 60px;
+    height: 500px;
+
+}
+
+.custom-height {
+    height: 500px;
+}
 
 .table {
     margin-top: 20px;
@@ -21,10 +59,20 @@ body {
 } */
 
 footer {
-    background-color: #333;
+    background-color: #191813;
     color: white;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+ 
+}
+
+
+/* Partner Section */
+.partner img {
+    width: 140px;
+    height: 90px;
+}
+
+
+/* Contact Section  */
+#contact {
+    margin-bottom: 100px;
 }
