@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .company__info {
-            background-color: #BD577F;
+            background-color: #3a7bc8;
             padding: 40px;
             flex: 1;
             display: flex;
@@ -143,17 +143,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             padding: 10px;
             border-radius: 30px;
-            background-color: #BC557D;
-            color: #fff;
-            border: none;
             font-weight: 600;
-            margin-top: 1.5em;
-            transition: background-color 0.3s, color 0.3s;
+            transition: all .3s ease;
+            background-color: #4a90e2;
+
         }
 
         .btn-form:hover,
         .btn-form:focus {
-            background-color: #BD577F;
+            background-color: #3a7bc8;
             color: #fff;
         }
 
@@ -165,11 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 4rem;
         }
 
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #BD567F;
-            box-shadow: 0 0 0 0.25rem rgba(189, 87, 127, 0.25);
-        }
 
         @media screen and (max-width: 768px) {
             .main-content {
@@ -199,9 +192,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light shadow fixed-top">
         <div class="container">
-            <a href="index.html" class="navbar-brand" style="color: #BD577F;">Techrave ICT Academy</a>
+        <a class="navbar-brand" href="#"> <img src="images/Techrave - transparent3.png" alt="About Techrave ICT Academy" class="img-fluid rounded " width="200" height="350"></a>
         </div>
     </nav>
 
@@ -217,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-8 login_form">
                 <div class="d-flex justify-content-end">
                     <a href="index.html" class="text-decoration-none text-muted">
-                        <i class="fas fa-home fa-2x" style="color: #BD577F;"></i>
+                        <i class="fas fa-home fa-2x" style="color: #4a90e2;"></i>
                     </a>
                 </div>
 
@@ -236,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <h2 class="text-center" style="color: #BD577F;">Registration</h2>
+                <h2 class="text-center mb-3" style="color: #4a90e2;">Registration</h2>
 
                 <form action="register.php" method="POST">
                     <div class="form-floating mb-3">

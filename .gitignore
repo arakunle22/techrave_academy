@@ -1,0 +1,16 @@
+# Ignore sensitive files
+.env
+
+# Ignore dependencies
+vendor/
+
+# Ignore IDE configurations
+.idea/
+*.iml
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore debug logs
+*.log

@@ -137,6 +137,17 @@ $conn->close();
     <link rel="stylesheet" href="styles/style.css" />
 
     <style>
+        
+        .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a7bc8;
+            border-color: #3a7bc8;
+        }
+
         .main-content {
             max-width: 900px;
             border-radius: 15px;
@@ -147,7 +158,7 @@ $conn->close();
         }
 
         .company__info {
-            background-color: #BD577F;
+            background-color: #3a7bc8;
             padding: 40px;
             flex: 1;
             display: flex;
@@ -157,28 +168,15 @@ $conn->close();
             color: #fff;
         }
 
-        .company__info h2 {
-            font-size: 2.5em;
-        }
-
-        .company_title {
-            font-size: 1.5em;
-            margin-top: 15px;
-        }
-
         .login_form {
             background-color: #fff;
             padding: 40px;
             flex: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .form__input {
             width: 100%;
             border: 0px solid transparent;
-            border-radius: 0;
             border-bottom: 1px solid #aaa;
             padding: 1em .5em .5em;
             padding-left: 2em;
@@ -187,39 +185,25 @@ $conn->close();
             transition: all .5s ease;
         }
 
-        .form__input:focus {
-            border-bottom-color: #BD567F;
-            box-shadow: 0 0 5px rgba(189, 87, 127, .4);
-            border-radius: 4px;
-        }
-
         .btn-form {
-            transition: all .5s ease;
             width: 100%;
             padding: 10px;
             border-radius: 30px;
-            color: #fff;
             font-weight: 600;
-            background-color: #BC557D;
-            border: none;
-            margin-top: 1.5em;
-        }
-
-        .btn-form:hover,
-        .btn-form:focus {
-            background-color: #BD577F;
-            color: #fff;
+            transition: all .3s ease;
+            background-color: #4a90e2;
         }
 
         .nav-tabs .nav-link {
-            color: #BD577F;
+            color: #3a7bc8;
             font-weight: 600;
         }
+      
 
-        .nav-tabs .nav-link.active {
+        .btn-form:hover,
+        .btn-form:focus {
+            background-color: #3a7bc8;
             color: #fff;
-            background-color: #BD577F;
-            border-color: #BD577F;
         }
 
         .alert {
@@ -228,6 +212,11 @@ $conn->close();
             border-color: #F1C4CF;
         }
 
+        .nav-tabs .nav-link.active {
+            color: #fff;
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+        }
         @media screen and (max-width: 768px) {
             .main-content {
                 flex-direction: column;
@@ -276,9 +265,9 @@ $conn->close();
 </head>
 
 <body>
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-light shadow">
         <div class="container">
-            <a href="index.html" class="navbar-brand" style="color: #BD577F;">Techrave ICT Academy</a>
+        <a class="navbar-brand" href="#"> <img src="images/Techrave - transparent3.png" alt="About Techrave ICT Academy" class="img-fluid rounded " width="200" height="350"></a>
         </div>
     </nav>
 
@@ -346,7 +335,7 @@ $conn->close();
                                 <input type="email" placeholder="Email" class="form-control form__input"
                                     id="reset_email" name="reset_email" required>
                             </div>
-                            <button type="submit" class="btn btn-form mb-5" style="background-color: #BD577F;" name="reset_request">Send
+                            <button type="submit" class="btn btn-form mb-5"  name="reset_request">Send
                                 Reset Code</button>
                         </form>
 
